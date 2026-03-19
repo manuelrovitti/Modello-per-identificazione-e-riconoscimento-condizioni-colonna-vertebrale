@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+seaborn
+visualkeras
+pillow
+pydicom
+scikit-learn
+ipython
+ipykernel
+tensorflow[and-cuda]
+jupyter
