@@ -1,26 +1,25 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-	"name": "Python 3",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:3-3.10",
+    "name": "TensorFlow GPU Dev",
+    "image": "nvcr.io/nvidia/tensorflow:24.03-tf2-py3",
+    
+    // Rimuovi --user per installare globalmente nel container (che è isolato)
+    "postCreateCommand": "pip3 install -r requirements.txt",
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+    "runArgs": [
+        "--gpus", "all",
+        "--shm-size", "2gb" // Consigliato: evita crash con dataset pesanti
+    ],
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --user -r requirements.txt",
-
-	"runArgs": [
-    "--gpus=all"
-  	]
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter",
+                "ms-python.vscode-pylance"
+            ]
+        }
+    },
+    
+    // Importante: le immagini NVIDIA usano root di default
+    "remoteUser": "root"
 }

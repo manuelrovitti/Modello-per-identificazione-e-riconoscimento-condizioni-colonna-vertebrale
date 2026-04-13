@@ -8,5 +8,5 @@ pydicom
 scikit-learn
 ipython
 ipykernel
-tensorflow[and-cuda]
+#tensorflow[and-cuda]
 jupyter
